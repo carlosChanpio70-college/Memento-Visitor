@@ -1,0 +1,4 @@
+# Created at 2026-04-20T00:00:28.872
+Boot Manifest-JAR contains absolute paths in classpath 'e:\Github\Factory Method\Decorator-and-State\hamburgueria\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+

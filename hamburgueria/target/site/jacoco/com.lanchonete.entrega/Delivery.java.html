@@ -9,7 +9,7 @@ import com.lanchonete.pedido.Pedido;
     @Override
     public void processar(Pedido p) {
 <span class="fc" id="L11">        System.out.printf(</span>
-            &quot;[DELIVERY] Pedido em rota de entrega! Total: R$ %.2f + Taxa: R$ %.2f = R$ %.2f%n&quot;,
+<span class="fc" id="L12">            &quot;[DELIVERY] Pedido em rota de entrega! Total: R$ %.2f + Taxa: R$ %.2f = R$ %.2f%n&quot;,</span>
 <span class="fc" id="L13">            p.calcularTotal(), TAXA_ENTREGA, p.calcularTotal() + TAXA_ENTREGA</span>
         );
 <span class="fc" id="L15">        System.out.println(&quot;[DELIVERY] Itens: &quot; + p.descricao());</span>

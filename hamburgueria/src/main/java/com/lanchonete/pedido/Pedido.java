@@ -1,19 +1,21 @@
 package com.lanchonete.pedido;
 
-import com.lanchonete.entrega.Entrega;
-import com.lanchonete.lanche.Lanche;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.lanchonete.entrega.Entrega;
+import com.lanchonete.entrega.state.EstadoPedido;
+import com.lanchonete.entrega.state.Preparando;
+import com.lanchonete.lanche.Lanche;
 
 /**
  * Representa um pedido composto por uma lista de lanches e uma estratégia de entrega.
  */
 public class Pedido {
-
     private final List<Lanche> lanches;
     private final Entrega entrega;
+    private EstadoPedido estadoAtual;   // ← NOVO: estado do pedido
 
     public Pedido(List<Lanche> l, Entrega e) {
         if (l == null || l.isEmpty()) {
@@ -24,6 +26,7 @@ public class Pedido {
         }
         this.lanches = Collections.unmodifiableList(l);
         this.entrega = e;
+        this.estadoAtual = new Preparando();   // ← NOVO: começa sempre em "Preparando"
     }
 
     /**
@@ -61,5 +64,25 @@ public class Pedido {
 
     public Entrega getEntrega() {
         return entrega;
+    }
+
+    public void setEstado(EstadoPedido estado) {
+        this.estadoAtual = estado;
+    }
+
+    public void preparar() {
+        estadoAtual.preparar(this);
+    }
+
+    public void colocarEmRota() {
+        estadoAtual.colocarEmRota(this);
+    }
+
+    public void entregar() {
+        estadoAtual.entregar(this);
+    }
+
+    public String getEstadoDescricao() {
+        return estadoAtual.getDescricao();
     }
 }

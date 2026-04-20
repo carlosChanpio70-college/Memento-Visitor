@@ -1,20 +1,26 @@
 package com.lanchonete;
 
-import com.lanchonete.entrega.*;
-import com.lanchonete.lanche.*;
-import com.lanchonete.lanche.decorator.*;
-import com.lanchonete.pedido.Pedido;
-import org.junit.jupiter.api.*;
-
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import com.lanchonete.entrega.Delivery;
+import com.lanchonete.entrega.Loja;
+import com.lanchonete.lanche.Hamburguer;
+import com.lanchonete.lanche.Lanche;
+import com.lanchonete.lanche.decorator.ExtraBacon;
+import com.lanchonete.lanche.decorator.ExtraQueijo;
+import com.lanchonete.pedido.Pedido;
 
 @DisplayName("Testes de Pedido")
 class PedidoTest {
-
-    //Construção válida
 
     @Nested
     @DisplayName("Construção do Pedido")
@@ -49,8 +55,6 @@ class PedidoTest {
                 () -> new Pedido(List.of(new Hamburguer()), null));
         }
     }
-
-    //calcularTotal
 
     @Nested
     @DisplayName("calcularTotal()")
@@ -97,8 +101,6 @@ class PedidoTest {
         }
     }
 
-    //descricao
-
     @Nested
     @DisplayName("descricao()")
     class DescricaoTest {
@@ -119,8 +121,6 @@ class PedidoTest {
             assertEquals("Hambúrguer | Hambúrguer, Queijo Extra", p.descricao());
         }
     }
-
-    //getLanches / getEntrega
 
     @Nested
     @DisplayName("Getters")

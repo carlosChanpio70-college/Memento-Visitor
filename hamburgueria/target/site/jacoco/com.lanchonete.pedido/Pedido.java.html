@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pedido.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hamburgueria</a> &gt; <a href="index.source.html" class="el_package">com.lanchonete.pedido</a> &gt; <span class="el_source">Pedido.java</span></div><h1>Pedido.java</h1><pre class="source lang-java linenums">package com.lanchonete.pedido;
 
-import com.lanchonete.entrega.Entrega;
-import com.lanchonete.lanche.Lanche;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.lanchonete.entrega.Entrega;
+import com.lanchonete.entrega.state.EstadoPedido;
+import com.lanchonete.entrega.state.Preparando;
+import com.lanchonete.lanche.Lanche;
 
 /**
  * Representa um pedido composto por uma lista de lanches e uma estratégia de entrega.
  */
 public class Pedido {
-
     private final List&lt;Lanche&gt; lanches;
     private final Entrega entrega;
+    private EstadoPedido estadoAtual;   // ← NOVO: estado do pedido
 
-<span class="fc" id="L18">    public Pedido(List&lt;Lanche&gt; l, Entrega e) {</span>
-<span class="fc bfc" id="L19" title="All 4 branches covered.">        if (l == null || l.isEmpty()) {</span>
-<span class="fc" id="L20">            throw new IllegalArgumentException(&quot;Um pedido deve ter ao menos um lanche.&quot;);</span>
+<span class="fc" id="L20">    public Pedido(List&lt;Lanche&gt; l, Entrega e) {</span>
+<span class="fc bfc" id="L21" title="All 4 branches covered.">        if (l == null || l.isEmpty()) {</span>
+<span class="fc" id="L22">            throw new IllegalArgumentException(&quot;Um pedido deve ter ao menos um lanche.&quot;);</span>
         }
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (e == null) {</span>
-<span class="fc" id="L23">            throw new IllegalArgumentException(&quot;Uma estratégia de entrega deve ser informada.&quot;);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (e == null) {</span>
+<span class="fc" id="L25">            throw new IllegalArgumentException(&quot;Uma estratégia de entrega deve ser informada.&quot;);</span>
         }
-<span class="fc" id="L25">        this.lanches = Collections.unmodifiableList(l);</span>
-<span class="fc" id="L26">        this.entrega = e;</span>
-<span class="fc" id="L27">    }</span>
+<span class="fc" id="L27">        this.lanches = Collections.unmodifiableList(l);</span>
+<span class="fc" id="L28">        this.entrega = e;</span>
+<span class="fc" id="L29">        this.estadoAtual = new Preparando();   // ← NOVO: começa sempre em &quot;Preparando&quot;</span>
+<span class="fc" id="L30">    }</span>
 
     /**
      * Calcula o total do pedido somando o preço de todos os lanches.
@@ -32,9 +35,9 @@ public class Pedido {
      * @return valor total em reais
      */
     public double calcularTotal() {
-<span class="fc" id="L35">        return lanches.stream()</span>
-<span class="fc" id="L36">                .mapToDouble(Lanche::preco)</span>
-<span class="fc" id="L37">                .sum();</span>
+<span class="fc" id="L38">        return lanches.stream()</span>
+<span class="fc" id="L39">                .mapToDouble(Lanche::preco)</span>
+<span class="fc" id="L40">                .sum();</span>
     }
 
     /**
@@ -43,24 +46,44 @@ public class Pedido {
      * @return string com todos os itens separados por &quot; | &quot;
      */
     public String descricao() {
-<span class="fc" id="L46">        return lanches.stream()</span>
-<span class="fc" id="L47">                .map(Lanche::descricao)</span>
-<span class="fc" id="L48">                .collect(Collectors.joining(&quot; | &quot;));</span>
+<span class="fc" id="L49">        return lanches.stream()</span>
+<span class="fc" id="L50">                .map(Lanche::descricao)</span>
+<span class="fc" id="L51">                .collect(Collectors.joining(&quot; | &quot;));</span>
     }
 
     /**
      * Processa o pedido usando a estratégia de entrega configurada.
      */
     public void processar() {
-<span class="fc" id="L55">        entrega.processar(this);</span>
-<span class="fc" id="L56">    }</span>
+<span class="fc" id="L58">        entrega.processar(this);</span>
+<span class="fc" id="L59">    }</span>
 
     public List&lt;Lanche&gt; getLanches() {
-<span class="fc" id="L59">        return lanches;</span>
+<span class="fc" id="L62">        return lanches;</span>
     }
 
     public Entrega getEntrega() {
-<span class="fc" id="L63">        return entrega;</span>
+<span class="fc" id="L66">        return entrega;</span>
+    }
+
+    public void setEstado(EstadoPedido estado) {
+<span class="nc" id="L70">        this.estadoAtual = estado;</span>
+<span class="nc" id="L71">    }</span>
+
+    public void preparar() {
+<span class="nc" id="L74">        estadoAtual.preparar(this);</span>
+<span class="nc" id="L75">    }</span>
+
+    public void colocarEmRota() {
+<span class="nc" id="L78">        estadoAtual.colocarEmRota(this);</span>
+<span class="nc" id="L79">    }</span>
+
+    public void entregar() {
+<span class="nc" id="L82">        estadoAtual.entregar(this);</span>
+<span class="nc" id="L83">    }</span>
+
+    public String getEstadoDescricao() {
+<span class="nc" id="L86">        return estadoAtual.getDescricao();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
