@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.hamburgueria.facade.SistemaRestauranteFacade;
-import com.hamburgueria.mediator.CentralOperacoesMediator;
-import com.hamburgueria.pedido.Pedido;
-import com.hamburgueria.pedido.builder.PedidoBuilder;
-import com.hamburgueria.pedido.builder.PedidoConcreteBuilder;
-import com.hamburgueria.pedido.builder.PedidoDirectorBuilder;
+import com.lanchonete.facade.SistemaRestauranteFacade;
+import com.lanchonete.mediator.CentralOperacoesMediator;
+import com.lanchonete.pedido.Pedido;
+import com.lanchonete.pedido.builder.PedidoBuilder;
+import com.lanchonete.pedido.builder.PedidoConcreteBuilder;
+import com.lanchonete.pedido.builder.PedidoDirectorBuilder;
 
 @DisplayName("Testes de Builder e Facade")
 class PedidoBuilderTest {

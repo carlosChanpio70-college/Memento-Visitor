@@ -1,11 +1,18 @@
 package com.lanchonete;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
-import com.hamburgueria.lanche.*;
-import com.hamburgueria.lanche.decorator.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.lanchonete.lanche.Hamburguer;
+import com.lanchonete.lanche.Lanche;
+import com.lanchonete.lanche.decorator.ExtraBacon;
+import com.lanchonete.lanche.decorator.ExtraQueijo;
+import com.lanchonete.lanche.decorator.IngredientesExtraDecorator;
 
 @DisplayName("Testes de Lanche e Decorators")
 class LancheTest {

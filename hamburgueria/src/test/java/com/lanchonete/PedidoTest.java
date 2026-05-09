@@ -3,23 +3,23 @@ package com.lanchonete;
 import java.util.Collections;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.hamburgueria.entrega.Delivery;
-import com.hamburgueria.entrega.Loja;
-import com.hamburgueria.lanche.Hamburguer;
-import com.hamburgueria.lanche.Lanche;
-import com.hamburgueria.lanche.decorator.ExtraBacon;
-import com.hamburgueria.lanche.decorator.ExtraQueijo;
-import com.hamburgueria.observer.Observer;
-import com.hamburgueria.pedido.Pedido;
+import com.lanchonete.entrega.Delivery;
+import com.lanchonete.entrega.Loja;
+import com.lanchonete.lanche.Hamburguer;
+import com.lanchonete.lanche.Lanche;
+import com.lanchonete.lanche.decorator.ExtraBacon;
+import com.lanchonete.lanche.decorator.ExtraQueijo;
+import com.lanchonete.observer.Observer;
+import com.lanchonete.pedido.Pedido;
 
 @DisplayName("Testes de Pedido")
 class PedidoTest {
