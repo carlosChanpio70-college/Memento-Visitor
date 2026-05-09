@@ -1,16 +1,25 @@
 package com.lanchonete;
 
-import org.junit.jupiter.api.*;
-
-import com.lanchonete.entrega.*;
-import com.lanchonete.lanche.decorator.*;
-import com.lanchonete.pedido.Pedido;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+import com.lanchonete.entrega.Delivery;
+import com.lanchonete.entrega.DriveThrough;
+import com.lanchonete.entrega.Loja;
+import com.lanchonete.lanche.Hamburguer;
+import com.lanchonete.lanche.Lanche;
+import com.lanchonete.lanche.decorator.ExtraBacon;
+import com.lanchonete.lanche.decorator.ExtraQueijo;
+import com.lanchonete.pedido.Pedido;
 
 @DisplayName("Testes de Estratégias de Entrega")
 class EntregaTest {
