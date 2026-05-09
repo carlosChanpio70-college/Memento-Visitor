@@ -1,8 +1,9 @@
 package com.lanchonete;
 
-import com.lanchonete.lanche.*;
-import com.lanchonete.lanche.decorator.*;
 import org.junit.jupiter.api.*;
+
+import com.hamburgueria.lanche.*;
+import com.hamburgueria.lanche.decorator.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

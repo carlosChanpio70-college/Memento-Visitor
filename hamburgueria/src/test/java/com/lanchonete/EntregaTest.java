@@ -1,10 +1,11 @@
 package com.lanchonete;
 
-import com.lanchonete.entrega.*;
-import com.lanchonete.lanche.*;
-import com.lanchonete.lanche.decorator.*;
-import com.lanchonete.pedido.Pedido;
 import org.junit.jupiter.api.*;
+
+import com.lanchonete1.entrega.*;
+import com.lanchonete1.lanche.*;
+import com.lanchonete1.lanche.decorator.*;
+import com.lanchonete1.pedido.Pedido;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
