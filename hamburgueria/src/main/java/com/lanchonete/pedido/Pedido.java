@@ -14,17 +14,18 @@ import com.lanchonete.entrega.state.Preparando;
 import com.lanchonete.lanche.Lanche;
 import com.lanchonete.observer.Observer;
 import com.lanchonete.observer.PedidoSubject;
+import com.lanchonete.pedido.memento.PedidoMomento;
 
 /**
  * Representa um pedido composto por uma lista de lanches e uma estratégia de entrega.
  * Implementa o padrão Observer como Subject.
  */
 public class Pedido implements PedidoSubject {
-    private final List<Lanche> lanches;
+    private List<Lanche> lanches;
     private final Entrega entrega;
-    private EstadoPedido estadoAtual;   // ← NOVO: estado do pedido
+    private EstadoPedido estadoAtual;
     private final DescontoHandler descontoHandler;
-    private final List<Observer> observadores;   // ← NOVO: observadores
+    private final List<Observer> observadores;
 
     public Pedido(List<Lanche> l, Entrega e) {
         if (l == null || l.isEmpty()) {
@@ -33,13 +34,13 @@ public class Pedido implements PedidoSubject {
         if (e == null) {
             throw new IllegalArgumentException("Uma estratégia de entrega deve ser informada.");
         }
-        this.lanches = Collections.unmodifiableList(l);
+        this.lanches = Collections.unmodifiableList(new ArrayList<>(l));
         this.entrega = e;
-        this.estadoAtual = new Preparando();   // ← NOVO: começa sempre em "Preparando"
+        this.estadoAtual = new Preparando();
         DescontoCombo descontoCombo = new DescontoCombo();
         descontoCombo.setProximo(new SemDesconto());
         this.descontoHandler = descontoCombo;
-        this.observadores = new ArrayList<>();   // ← NOVO: inicializa observadores
+        this.observadores = new ArrayList<>();
     }
 
     /**
@@ -106,6 +107,19 @@ public class Pedido implements PedidoSubject {
 
     public double calcularTotalComDesconto() {
         return calcularTotal() - calcularDesconto();
+    }
+
+    public PedidoMomento salvarMomento() {
+        return new PedidoMomento(lanches, estadoAtual, calcularTotal());
+    }
+
+    public void restaurarMomento(PedidoMomento momento) {
+        if (momento == null) {
+            throw new IllegalArgumentException("Momento não pode ser nulo.");
+        }
+        this.lanches = Collections.unmodifiableList(new ArrayList<>(momento.getLanches()));
+        this.estadoAtual = momento.getEstado();
+        notifyObservers();
     }
 
     @Override

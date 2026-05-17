@@ -16,10 +16,16 @@ E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\lanche\decorato
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\lanche\decorator\IngredientesExtraDecorator.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\lanche\Hamburguer.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\lanche\Lanche.java
+E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\lanche\visitor\CalculadoraCaloriasVisitor.java
+E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\lanche\visitor\LancheVisitor.java
+E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\lanche\visitor\RelatorioCozinhaVisitor.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\mediator\CentralOperacoesMediator.java
+E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\mediator\RestauranteMediator.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\observer\Observer.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\observer\PedidoSubject.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\pedido\builder\PedidoBuilder.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\pedido\builder\PedidoConcreteBuilder.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\pedido\builder\PedidoDirectorBuilder.java
+E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\pedido\memento\PedidoCaretaker.java
+E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\pedido\memento\PedidoMomento.java
 E:\Github\Hamburgueria\hamburgueria\src\main\java\com\lanchonete\pedido\Pedido.java

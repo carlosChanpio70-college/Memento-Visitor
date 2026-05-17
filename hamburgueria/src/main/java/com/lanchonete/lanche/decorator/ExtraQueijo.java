@@ -1,6 +1,7 @@
 package com.lanchonete.lanche.decorator;
 
 import com.lanchonete.lanche.Lanche;
+import com.lanchonete.lanche.visitor.LancheVisitor;
 
 /**
  * Decorator concreto que adiciona queijo extra ao lanche.
@@ -22,5 +23,11 @@ public class ExtraQueijo extends IngredientesExtraDecorator {
     @Override
     public double preco() {
         return componente.preco() + PRECO_EXTRA;
+    }
+
+    @Override
+    public void accept(LancheVisitor visitor) {
+        visitor.visitExtraQueijo(this);
+        componente.accept(visitor);
     }
 }

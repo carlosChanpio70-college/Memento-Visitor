@@ -8,7 +8,7 @@ import com.lanchonete.pedido.Pedido;
 /**
  * Mediador que centraliza operações entre pedidos, observadores e entregas.
  */
-public class CentralOperacoesMediator {
+public class CentralOperacoesMediator implements RestauranteMediator {
 
     public void registrarObservador(PedidoSubject subject, Observer observador) {
         if (subject == null || observador == null) {
@@ -24,8 +24,9 @@ public class CentralOperacoesMediator {
         entrega.processar(pedido);
     }
 
-    public void notificar(Observer observador, String mensagem) {
-        if (observador == null || mensagem == null) {
+    @Override
+    public void notificar(Object origem, String mensagem) {
+        if (origem == null || mensagem == null) {
             return;
         }
         System.out.printf("[MEDIADOR] %s%n", mensagem);

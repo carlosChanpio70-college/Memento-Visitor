@@ -37,10 +37,20 @@ public class PedidoConcreteBuilder implements PedidoBuilder {
 <span class="fc" id="L37">    }</span>
 
     @Override
+    public void buildPedidoSimples() {
+<span class="nc" id="L41">        buildSanduiche1();</span>
+<span class="nc" id="L42">    }</span>
+
+    @Override
+    public void buildComboFamilia() {
+<span class="nc" id="L46">        buildSanduiche2();</span>
+<span class="nc" id="L47">    }</span>
+
+    @Override
     public Pedido getPedido() {
-<span class="fc" id="L41">        Pedido builtPedido = this.pedido;</span>
-<span class="fc" id="L42">        reset();</span>
-<span class="fc" id="L43">        return builtPedido;</span>
+<span class="fc" id="L51">        Pedido builtPedido = this.pedido;</span>
+<span class="fc" id="L52">        reset();</span>
+<span class="fc" id="L53">        return builtPedido;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

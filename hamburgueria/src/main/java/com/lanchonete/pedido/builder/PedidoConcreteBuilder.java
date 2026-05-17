@@ -37,6 +37,16 @@ public class PedidoConcreteBuilder implements PedidoBuilder {
     }
 
     @Override
+    public void buildPedidoSimples() {
+        buildSanduiche1();
+    }
+
+    @Override
+    public void buildComboFamilia() {
+        buildSanduiche2();
+    }
+
+    @Override
     public Pedido getPedido() {
         Pedido builtPedido = this.pedido;
         reset();

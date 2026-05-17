@@ -1,5 +1,7 @@
 package com.lanchonete.lanche;
 
+import com.lanchonete.lanche.visitor.LancheVisitor;
+
 /**
  * Implementação concreta de Lanche que representa um hambúrguer simples.
  * É o "ConcreteComponent" no padrão Decorator.
@@ -17,5 +19,10 @@ public class Hamburguer implements Lanche {
     @Override
     public double preco() {
         return PRECO_BASE;
+    }
+
+    @Override
+    public void accept(LancheVisitor visitor) {
+        visitor.visitHamburguer(this);
     }
 }

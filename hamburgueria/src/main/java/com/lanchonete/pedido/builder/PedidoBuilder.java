@@ -13,5 +13,9 @@ public interface PedidoBuilder {
 
     void buildSanduiche2();
 
+    void buildPedidoSimples();
+
+    void buildComboFamilia();
+
     Pedido getPedido();
 }

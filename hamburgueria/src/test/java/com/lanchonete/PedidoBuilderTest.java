@@ -41,6 +41,32 @@ class PedidoBuilderTest {
     }
 
     @Test
+    @DisplayName("PedidoDirectorBuilder deve construir pedido simples por nome de método do diagrama")
+    void deveConstruirPedidoSimplesPeloDiagrama() {
+        PedidoDirectorBuilder diretor = new PedidoDirectorBuilder();
+        PedidoConcreteBuilder builder = new PedidoConcreteBuilder();
+
+        diretor.construirPedidoSimples(builder);
+        Pedido pedido = builder.getPedido();
+
+        assertNotNull(pedido);
+        assertEquals(1, pedido.getLanches().size());
+    }
+
+    @Test
+    @DisplayName("PedidoDirectorBuilder deve construir combo família")
+    void deveConstruirComboFamilia() {
+        PedidoDirectorBuilder diretor = new PedidoDirectorBuilder();
+        PedidoConcreteBuilder builder = new PedidoConcreteBuilder();
+
+        diretor.construirComboFamilia(builder);
+        Pedido pedido = builder.getPedido();
+
+        assertNotNull(pedido);
+        assertEquals(1, pedido.getLanches().size());
+    }
+
+    @Test
     @DisplayName("SistemaRestauranteFacade deve cadastrar e gerenciar pedidos")
     void facadeDeveCadastrarEExecutarPedido() {
         PedidoDirectorBuilder diretor = new PedidoDirectorBuilder();

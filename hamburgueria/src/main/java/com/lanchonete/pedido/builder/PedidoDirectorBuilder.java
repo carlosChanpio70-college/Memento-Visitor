@@ -14,4 +14,12 @@ public class PedidoDirectorBuilder {
         builder.reset();
         builder.buildSanduiche2();
     }
+
+    public void construirPedidoSimples(PedidoBuilder builder) {
+        construirPedido(builder);
+    }
+
+    public void construirComboFamilia(PedidoBuilder builder) {
+        construirPedidoAvancado(builder);
+    }
 }

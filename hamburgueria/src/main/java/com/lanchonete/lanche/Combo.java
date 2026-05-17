@@ -1,5 +1,7 @@
 package com.lanchonete.lanche;
 
+import com.lanchonete.lanche.visitor.LancheVisitor;
+
 /**
  * Representa um combo de lanche composto por descrição e preço fixo.
  */
@@ -27,5 +29,10 @@ public class Combo implements Lanche {
     @Override
     public double preco() {
         return preco;
+    }
+
+    @Override
+    public void accept(LancheVisitor visitor) {
+        visitor.visitCombo(this);
     }
 }

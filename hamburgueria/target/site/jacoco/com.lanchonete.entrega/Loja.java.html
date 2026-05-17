@@ -2,15 +2,17 @@
 
 import com.lanchonete.pedido.Pedido;
 
-<span class="fc" id="L5">public class Loja implements Entrega {</span>
+<span class="fc" id="L5">public class Loja extends Entrega {</span>
 
     @Override
-    public void processar(Pedido p) {
-<span class="fc" id="L9">        System.out.printf(</span>
-<span class="fc" id="L10">            &quot;[LOJA] Pedido pronto para retirada no balcão! Total: R$ %.2f%n&quot;,</span>
-<span class="fc" id="L11">            p.calcularTotal()</span>
-        );
-<span class="fc" id="L13">        System.out.println(&quot;[LOJA] Itens: &quot; + p.descricao());</span>
-<span class="fc" id="L14">    }</span>
+    protected void prepararEntrega(Pedido pedido) {
+<span class="fc" id="L9">        System.out.println(&quot;[LOJA] Pedido pronto para retirada no balcão.&quot;);</span>
+<span class="fc" id="L10">    }</span>
+
+    @Override
+    protected void executarLogistica(Pedido pedido) {
+<span class="fc" id="L14">        System.out.printf(&quot;[LOJA] Total do pedido para retirada: R$ %.2f%n&quot;, pedido.calcularTotal());</span>
+<span class="fc" id="L15">        System.out.println(&quot;[LOJA] Itens: &quot; + pedido.descricao());</span>
+<span class="fc" id="L16">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,6 +1,7 @@
 package com.lanchonete.lanche.decorator;
 
 import com.lanchonete.lanche.Lanche;
+import com.lanchonete.lanche.visitor.LancheVisitor;
 
 /**
  * Classe abstrata base do padrão Decorator para ingredientes extras.
@@ -25,5 +26,10 @@ public abstract class IngredientesExtraDecorator implements Lanche {
     @Override
     public double preco() {
         return componente.preco();
+    }
+
+    @Override
+    public void accept(LancheVisitor visitor) {
+        componente.accept(visitor);
     }
 }

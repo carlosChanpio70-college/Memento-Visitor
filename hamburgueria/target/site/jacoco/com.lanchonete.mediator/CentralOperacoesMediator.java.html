@@ -8,7 +8,7 @@ import com.lanchonete.pedido.Pedido;
 /**
  * Mediador que centraliza operações entre pedidos, observadores e entregas.
  */
-<span class="fc" id="L11">public class CentralOperacoesMediator {</span>
+<span class="fc" id="L11">public class CentralOperacoesMediator implements RestauranteMediator {</span>
 
     public void registrarObservador(PedidoSubject subject, Observer observador) {
 <span class="nc bnc" id="L14" title="All 4 branches missed.">        if (subject == null || observador == null) {</span>
@@ -24,11 +24,12 @@ import com.lanchonete.pedido.Pedido;
 <span class="fc" id="L24">        entrega.processar(pedido);</span>
 <span class="fc" id="L25">    }</span>
 
-    public void notificar(Observer observador, String mensagem) {
-<span class="nc bnc" id="L28" title="All 4 branches missed.">        if (observador == null || mensagem == null) {</span>
-<span class="nc" id="L29">            return;</span>
+    @Override
+    public void notificar(Object origem, String mensagem) {
+<span class="nc bnc" id="L29" title="All 4 branches missed.">        if (origem == null || mensagem == null) {</span>
+<span class="nc" id="L30">            return;</span>
         }
-<span class="nc" id="L31">        System.out.printf(&quot;[MEDIADOR] %s%n&quot;, mensagem);</span>
-<span class="nc" id="L32">    }</span>
+<span class="nc" id="L32">        System.out.printf(&quot;[MEDIADOR] %s%n&quot;, mensagem);</span>
+<span class="nc" id="L33">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

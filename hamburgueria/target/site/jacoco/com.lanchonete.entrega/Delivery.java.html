@@ -2,21 +2,32 @@
 
 import com.lanchonete.pedido.Pedido;
 
-<span class="fc" id="L5">public class Delivery implements Entrega {</span>
+<span class="fc" id="L5">public class Delivery extends Entrega {</span>
 
     private static final double TAXA_ENTREGA = 8.00;
 
     @Override
-    public void processar(Pedido p) {
-<span class="fc" id="L11">        System.out.printf(</span>
-<span class="fc" id="L12">            &quot;[DELIVERY] Pedido em rota de entrega! Total: R$ %.2f + Taxa: R$ %.2f = R$ %.2f%n&quot;,</span>
-<span class="fc" id="L13">            p.calcularTotal(), TAXA_ENTREGA, p.calcularTotal() + TAXA_ENTREGA</span>
+    protected void prepararEntrega(Pedido pedido) {
+<span class="fc" id="L11">        System.out.println(&quot;[DELIVERY] Pedido recebido para entrega.&quot;);</span>
+<span class="fc" id="L12">    }</span>
+
+    @Override
+    protected void executarLogistica(Pedido pedido) {
+<span class="fc" id="L16">        System.out.printf(</span>
+            &quot;[DELIVERY] Pedido em rota de entrega! Total: R$ %.2f + Taxa: R$ %.2f = R$ %.2f%n&quot;,
+<span class="fc" id="L18">            pedido.calcularTotal(), TAXA_ENTREGA, pedido.calcularTotal() + TAXA_ENTREGA</span>
         );
-<span class="fc" id="L15">        System.out.println(&quot;[DELIVERY] Itens: &quot; + p.descricao());</span>
-<span class="fc" id="L16">    }</span>
+<span class="fc" id="L20">        System.out.println(&quot;[DELIVERY] Itens: &quot; + pedido.descricao());</span>
+<span class="fc" id="L21">    }</span>
+
+    @Override
+    protected void emitirNotaFiscal(Pedido pedido) {
+<span class="fc" id="L25">        super.emitirNotaFiscal(pedido);</span>
+<span class="fc" id="L26">        System.out.printf(&quot;[DELIVERY] Taxa de entrega aplicada: R$ %.2f%n&quot;, TAXA_ENTREGA);</span>
+<span class="fc" id="L27">    }</span>
 
     public double getTaxaEntrega() {
-<span class="fc" id="L19">        return TAXA_ENTREGA;</span>
+<span class="fc" id="L30">        return TAXA_ENTREGA;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
